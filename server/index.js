@@ -2,7 +2,8 @@ const express = require("express");
 const { ApolloServer } = require("@apollo/server");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const { expressMiddleware } = require("@apollo/server/express4")
+const { expressMiddleware } = require("@apollo/server/express4");
+const { default: axios } = require("axios");
 
 
 async function startServer() {
@@ -21,7 +22,7 @@ async function startServer() {
         `,
         resolvers: {
             Query: {
-                getTodos: () => [{ id: 1, title: "Jai shree ram", completed: false }]
+                getTodos: async () => (await axios.get("https://jsonplaceholder.typicode.com/todos/")).data
             }
         }
     });
