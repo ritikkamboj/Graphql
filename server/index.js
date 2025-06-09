@@ -23,6 +23,7 @@ website : String!
         id: ID!
         title : String!
         completed : Boolean
+        userId : ID!
         }
 
         type Query{
